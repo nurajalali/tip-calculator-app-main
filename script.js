@@ -18,6 +18,8 @@ btns.forEach((btn) => {
       document.getElementById("tips__custom").classList.add("disabled");
       //   state.tip = parseInt(btn.innerHTML.slice(0, btn.innerHTML.length - 1));
       state.tip = parseInt(btn.innerText);
+      btns.forEach((btn) => btn.classList.remove("selected"));
+      btn.classList.add("selected");
     });
   }
 });
@@ -30,15 +32,36 @@ document.getElementById("peopleNum").addEventListener("change", (event) => {
     const tipPerPerson = tip / state.people;
     const totalPerPerson = (state.amount + state.tip) / state.people;
     tipSpan.innerText = tipPerPerson.toFixed(2);
-    totalSpan.innerText = totalPerPerson.toFixed(2  );
+    totalSpan.innerText = totalPerPerson.toFixed(2);
   }
 });
 
+document.getElementById("peopleNum").addEventListener("blur", (event) => {
+  if (event.target.value == 0) {
+    document.getElementById("peopleNum").classList.add("error");
+    document.getElementById("error").classList.remove("disabled");
+  }
+});
+
+document.getElementById("peopleNum").addEventListener("focus", () => {
+  document.getElementById("peopleNum").classList.remove("error");
+  document.getElementById("error").classList.add("disabled");
+});
+
+document.getElementsByClassName("input__content");
+
 document.getElementById("btn_custom").addEventListener("click", (event) => {
   document.getElementById("tips__custom").classList.remove("disabled");
+  btns.forEach((btn) => btn.classList.remove("selected"));
   event.currentTarget.classList.add("disabled");
 });
 
 document.getElementById("tips__custom").addEventListener("change", (event) => {
   state.tip = parseInt(event.target.value);
 });
+
+document
+  .getElementsByClassName("tips__btn")
+  .addEventListener(click, (event) => {
+    event.target.set;
+  });
